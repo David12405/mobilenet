@@ -31,7 +31,7 @@ in_features = model.classifier[3].in_features
 model.classifier[3] = nn.Linear(in_features, num_classes)
 
 # ===== Load checkpoint =====
-state_dict = torch.load("C:\\Users\\huuda\\Downloads\\best_mobilenetv3_finetune.pth", map_location=device)
+state_dict = torch.load("best_mobilenetv3_finetune.pth", map_location=device)
 model.load_state_dict(state_dict)
 model = model.to(device)
 model.eval()
