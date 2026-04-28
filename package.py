@@ -16,7 +16,7 @@ with open("labels.json", "r", encoding="utf-8") as f:
 num_classes = len(classes)
 
 # ===== Build model (same architecture as training) =====
-model = models.mobilenet_v3_large(weights=None)
+model = models.mobilenet_v3_small(weights=None)
 
 for param in model.features.parameters():
     param.requires_grad = False
@@ -25,7 +25,7 @@ in_features = model.classifier[3].in_features
 model.classifier[3] = nn.Linear(in_features, num_classes)
 
 # ===== Load checkpoint =====
-state_dict = torch.load("best_mobilenetv3_finetune.pth", map_location=device)
+state_dict = torch.load("best_mobilenetv3_small_finetune.pth", map_location=device)
 model.load_state_dict(state_dict)
 model = model.to(device)
 model.eval()
